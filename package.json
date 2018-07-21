@@ -1,6 +1,6 @@
 {
   "name": "react-editable-list",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "react-editable-list React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -18,7 +18,9 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
   "peerDependencies": {
     "react": "16.x"
   },

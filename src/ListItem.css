@@ -1,0 +1,23 @@
+[contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+    color: #888;
+}
+
+.list-item-container {
+    position: relative;
+}
+
+.list-item {
+    cursor: text;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+    position: relative;
+}
+
+.remove-button {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
