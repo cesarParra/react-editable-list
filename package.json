@@ -1,6 +1,6 @@
 {
   "name": "react-editable-list-component",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "React component for an editable list.",
   "main": "lib/index.js",
   "module": "es/index.js",
