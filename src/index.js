@@ -2,11 +2,6 @@ import React, { Component } from 'react'
 import uuid from 'uuid';
 import ListItem from './ListItem';
 
-// TODO: Add README
-// TODO: Add LICENSE
-// TODO: Unit tests
-// TODO: Styling support
-// TODO: Change "Remove" link for icon and let it be configurable
 class EditableList extends Component {
     constructor() {
         super();
@@ -41,7 +36,7 @@ class EditableList extends Component {
     }
 
     onTitleChange(event) {
-        this.setState({title: this.refs.title.textContent})
+        this.setState({title: this.refs.title.textContent}, () => this.onChange());
     }
 
     onListItemKeyPress(event, listItemId, content) {
@@ -50,7 +45,11 @@ class EditableList extends Component {
         let currentItem = listItemsTemp[index];
         currentItem.itemContent = content;
         currentItem.extraContent = content ? false : currentItem.extraContent;
-        this.setState({listItems: listItemsTemp});
+        this.setState({listItems: listItemsTemp}, () => {
+            if (!content) {
+                this.onChange();
+            }
+        });
 
         if (content) {
             this.ensureExtraContent();
@@ -88,11 +87,12 @@ class EditableList extends Component {
         });
     }
 
-    ensureExtraContent() {
+    ensureExtraContent(callback = this.onChange.bind(this)) {
         let hasExtraContent = false;
         this.state.listItems.forEach((currentItem) => {
             if (currentItem.extraContent) {
                 hasExtraContent = true;
+                callback();
                 return;
             }
         });
@@ -100,8 +100,21 @@ class EditableList extends Component {
         if (!hasExtraContent) {
             let listItemsTemp = Array.from(this.state.listItems);
             listItemsTemp.push({ itemContent: null, extraContent: true, id: uuid.v4() });
-            this.setState({ listItems : listItemsTemp});
+            this.setState({ listItems : listItemsTemp}, callback);
         }
+    }
+
+    onChange() {
+        let editableListContents = {};
+        editableListContents.title = this.state.title;
+        editableListContents.listItems = this.state.listItems.map((listItem) => {
+            return {
+                id: listItem.id,
+                text: listItem.itemContent
+            };
+        });
+
+        this.props.onChange(editableListContents);
     }
 }
 

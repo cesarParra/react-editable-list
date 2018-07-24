@@ -67,8 +67,6 @@ class ListItem extends Component {
             return;
         }
 
-        // TODO: Do we need to somehow notify the state of the contents that were
-        // pasted in the first line?
         let currentText = this.ref.current.textContent;
         currentText = currentText + linesAdded[0];
         this.ref.current.textContent = currentText;

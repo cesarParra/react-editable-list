@@ -7,8 +7,12 @@ class Demo extends Component {
   render() {
     return <div>
       <h1>Demo</h1>
-      <EditableList title="Demo" itemPlaceholder="+" />
+      <EditableList onChange={this.onChange.bind(this)} title="Demo" itemPlaceholder="+" />
     </div>
+  }
+
+  onChange(latestInfo) {
+    console.log('Latest information in the component', latestInfo);
   }
 }
 
