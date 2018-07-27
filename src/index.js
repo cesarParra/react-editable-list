@@ -105,6 +105,10 @@ class EditableList extends Component {
     }
 
     onChange() {
+        if (!this.props.onChange) {
+            return;
+        }
+        
         let editableListContents = {};
         editableListContents.title = this.state.title;
         editableListContents.listItems = this.state.listItems.map((listItem) => {

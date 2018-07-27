@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import '../css/ListItem.css';
+
+library.add(faTimesCircle);
 
 class ListItem extends Component {
     constructor() {
@@ -30,7 +35,11 @@ class ListItem extends Component {
 
     renderRemoveButton() {
         if (!this.props.item.extraContent) {
-            return <a href="#" onClick={(event) => this.handleRemove(event)} className="remove-button">Remove</a>;
+            return (
+                <div onClick={(event) => this.handleRemove(event)} className="remove-button" title="Remove">
+                    <FontAwesomeIcon icon="times-circle" />
+                </div>
+            );
         }
     }
 
