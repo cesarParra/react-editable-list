@@ -9,7 +9,20 @@ class EditableList extends Component {
     }
 
     componentDidMount() {
-        this.setState({ title: this.props.title });
+        let items = [];
+        if (this.props.items) {
+            items = this.props.items.map(function (currentItem) {
+                return {
+                    itemContent: currentItem,
+                    extraContent: false,
+                    id: uuid.v4() 
+                }
+            });
+        }
+
+        items = [...items, ...this.state.listItems];
+
+        this.setState({ title: this.props.title, listItems: items });
         this.refs.title.textContent = this.props.title;
     }
 

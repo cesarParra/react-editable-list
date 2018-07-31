@@ -7,7 +7,7 @@ class Demo extends Component {
   render() {
     return <div>
       <h1>Demo</h1>
-      <EditableList onChange={this.onChange.bind(this)} title="Demo" itemPlaceholder="+" />
+      <EditableList onChange={this.onChange.bind(this)} title="Demo" items={['test1', 'test2']} itemPlaceholder="+" />
     </div>
   }
 
